@@ -6,9 +6,9 @@ Software developer: C++, C#, Python, embedded. I build small, dependency-light t
 
 | Project | What it is | Stack | State |
 |---|---|---|---|
-| [Quasar Monitor](https://github.com/SemyonZamiakin/QuasarMonitor) | Tray system monitor for Windows with a skinnable overlay, about 5 MB of RAM, local JSON metrics export | C++17, Win32, GDI+ | v0.1.0, 115 automated checks, CI |
-| [Quasar Light](https://github.com/SemyonZamiakin/QuasarLight) | RGB lighting control panel (GPU, RAM, motherboard) on top of OpenRGB | C++17 core, WPF (.NET 10) | v0.1.0, 46 core checks, verified on one PC |
-| [QuasarUI](https://github.com/SemyonZamiakin/QuasarUI) | UI toolkit for SPI TFT displays with dirty-rectangle flushing | C++11, ESP32 / Arduino | v0.1.0, 38 host checks; not yet verified on hardware |
+| [Euclase Monitor](https://github.com/SemyonZamiakin/EuclaseMonitor) | Tray system monitor for Windows with a skinnable overlay, about 5 MB of RAM, local JSON metrics export | C++17, Win32, GDI+ | v0.1.0, 115 automated checks, CI |
+| [Euclase Light](https://github.com/SemyonZamiakin/EuclaseLight) | RGB lighting control panel (GPU, RAM, motherboard) on top of OpenRGB | C++17 core, WPF (.NET 10) | v0.1.0, 46 core checks, verified on one PC |
+| [EuclaseUI](https://github.com/SemyonZamiakin/EuclaseUI) | UI toolkit for SPI TFT displays with dirty-rectangle flushing | C++11, ESP32 / Arduino | v0.1.0, 38 host checks; not yet verified on hardware |
 
 ## Engineering approach
 
