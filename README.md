@@ -1,4 +1,4 @@
-# Semyon Zamiakin
+<p align="center"><img src="assets/banner.png" alt="Semyon Zamiakin, founder of Euclase: systems-level software" width="100%"></p>
 
 Software developer working close to the machine: C, C++, C#, Python, Windows and Linux internals, shared memory, binary code, embedded. I build [Euclase](https://github.com/SemyonZamiakin), a software studio for systems-level tools, and I document what is tested and what is not.
 
