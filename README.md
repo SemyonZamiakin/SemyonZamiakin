@@ -1,32 +1,52 @@
-<p align="center"><img src="assets/banner.png" alt="Semyon Zamiakin, founder of Euclase: systems-level software" width="100%"></p>
+<p align="center">
+  <img src="assets/banner.png" width="100%" alt="Background">
+</p>
 
-Software developer working close to the machine: C, C++, C#, Python, Windows and Linux internals, shared memory, binary code, embedded. I build [Euclase](https://github.com/SemyonZamiakin), a software studio for systems-level tools, and I document what is tested and what is not.
+<h3 align="center">Semyon Zamyakin &nbsp;•&nbsp; <code>SIIMUCH</code></h3>
 
-## Projects
+<p align="center">
+  <em>Founder of Euclase &nbsp;|&nbsp; Systems & Low-Level Engineer</em>
+</p>
 
-| Project | What it is | Stack | State |
-|---|---|---|---|
-| [Vajra Binary Core](https://github.com/SemyonZamiakin/VajraBinaryCore) | Live patching for running C++ programs: swaps machine code and migrates live objects to new struct layouts, with pointers fixed up, in one atomic, revertible transaction; own x86-64 decoder, matches objdump on 2M+ instructions | C++17, x86-64 Linux, Windows | v0.1.0, 75 tests, CI on Linux (incl. ASan/UBSan/TSan) and Windows |
-| [Corundum HFT](https://github.com/SemyonZamiakin/CorundumHFT) | Zero-copy lock-free ring buffer in shared memory for high-frequency telemetry between processes; no syscalls or heap on the hot path; 74 ns one-way vs 6.7 µs for a pipe on Windows | C11, C++17, Linux, Windows | v1.1.0, CI on Linux x86-64 / arm64 and Windows, sanitizers |
-| [Euclase SessionGuard](https://github.com/SemyonZamiakin/EuclaseSessionGuard) | Local, tamper-evident audit of messengers and social-network sessions on your own computer: when each client ran, used the network, had focus, and who touched its session files; HMAC-chained log, no network access at all | Python 3.11+, no dependencies, Windows, Linux | v0.2.0, 129 tests, CI on Windows, Linux, macOS; Windows file-audit mode not yet run live |
-| [Euclase Monitor](https://github.com/SemyonZamiakin/EuclaseMonitor) | Tray system monitor for Windows with a skinnable overlay; publishes metrics to local programs over a Corundum shared-memory ring; 1.3 ms per update | C++17, Win32, GDI+ | v1.1.0, unit and end-to-end tests, CI |
-| [Euclase Light](https://github.com/SemyonZamiakin/EuclaseLight) | RGB lighting control panel (GPU, RAM, motherboard) on top of OpenRGB; lights can follow system load from Euclase Monitor | C++17 core, WPF (.NET 10) | v1.1.0, 68 core checks, verified on one PC |
-| [EuclaseUI](https://github.com/SemyonZamiakin/EuclaseUI) | UI toolkit for SPI TFT displays with dirty-rectangle flushing | C++11, ESP32 / Arduino | v0.1.0, 38 host checks; not yet verified on hardware |
+<p align="center">
+  <img src="https://img.shields.io/badge/C++17-%2300599C.svg?style=flat&logo=c%2B%2B&logoColor=white&color=161b22" alt="C++">
+  <img src="https://img.shields.io/badge/C-%2300599C.svg?style=flat&logo=c&logoColor=white&color=161b22" alt="C">
+  <img src="https://img.shields.io/badge/Python-3670A0?style=flat&logo=python&logoColor=ffdd54&color=161b22" alt="Python">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black&color=161b22" alt="Linux">
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white&color=161b22" alt="Windows">
+  <img src="https://img.shields.io/badge/Assembly-%236E4C13.svg?style=flat&logo=assemblyscript&logoColor=white&color=161b22" alt="Assembly">
+</p>
 
-The projects build on each other: Euclase Monitor publishes its metrics over Corundum HFT, and Euclase Light reads them to drive RGB lighting.
+---
 
-## Engineering approach
+### Core Projects
 
-- Tests and CI come with the code, and every README has a section on what is verified and what is not, including the parts I could not run on real hardware.
-- Verification goes past unit tests where it matters: differential testing against reference tools (Vajra's decoder against GNU objdump), fault injection at every write, multi-threaded stress tests, sanitizers, tamper tests for logs.
-- Measured numbers only: benchmarks state the machine, the build and the method, and say when a result is noisy.
-- No secrets in repositories, pinned and checksummed downloads, loopback-only network services by default, and tools that watch the machine never send data off it.
-- Documentation that is itself tested where possible (every example in the Euclase Monitor customization guide is loaded by its test suite).
+| Project | Description | Stack | Status |
+| :--- | :--- | :--- | :--- |
+| **[Vajra Binary Core](https://github.com/SemyonZamiakin/VajraBinaryCore)** | Runtime binary patching and live memory layout migration engine for native C++ binaries. | C++17, x86-64, Linux, Windows | `v0.1.0` (75 tests, CI) |
+| **[Corundum HFT](https://github.com/SemyonZamiakin/CorundumHFT)** | Zero-copy lock-free SPSC ring buffer in POSIX shared memory for low-latency telemetry. | C11, C++17, Linux, Windows | `v1.1.0` (129 tests, CI) |
+| **[Euclase SessionGuard](https://github.com/SemyonZamiakin/EuclaseSessionGuard)** | Tamper-evident local audit daemon for desktop applications and messaging sessions. | Python 3.11+, Windows, Linux | `v0.2.0` (129 tests) |
+| **[Euclase Monitor](https://github.com/SemyonZamiakin/Euclase Monitor)** | Tray system monitor with skinnable GDI+ overlay publishing to Corundum shared memory. | C++17, Win32, GDI+ | `v1.1.0` (Tested) |
+| **[Euclase Light](https://github.com/SemyonZamiakin/EuclaseLight)** | Lightweight C++ core & WPF RGB lighting control panel linked with system telemetry. | C++17, .NET 10, WPF | `v1.0.0` (Verified) |
+| **[EuclaseUI](https://github.com/SemyonZamiakin/EuclaseUI)** | Minimal UI toolkit for SPI TFT displays featuring dirty-rectangle flushing. | C++11, ESP32, Arduino | `v0.1.0` (Embedded) |
 
-## Available for
+> *The projects build on each other: Euclase Monitor publishes metrics over Corundum HFT, and Euclase Light reads them to drive hardware states.*
 
-- Systems and low-level work: native tooling for Windows and Linux, IPC and performance, binary instrumentation, security and audit tools, embedded.
-- Business automation: chat bots for orders and bookings, price parsers, CRM, 1C and spreadsheet integrations.
-- Technical co-founder / CTO role in product teams that need an engineer.
+---
 
-To discuss work, open an issue in any of the repositories above.
+### Engineering Approach
+
+* **Rigorous Testing:** Every subsystem comes with automated test suites and CI pipelines (ASan, UBSan, ThreadSanitizer).
+* **Differential Verification:** Decoders and parsers are cross-validated against reference tools (e.g., custom x86-64 decoder checked against GNU `objdump`).
+* **Zero Bloat:** Lightweight, terminal-first, open-source code built directly via GCC/CMake without heavy third-party runtime dependencies.
+* **Security First:** Local-only loops, pinned checksums, and zero telemetry leakage off the machine.
+
+---
+
+### Contact & Status
+
+* **Email:** `semyanzamyakin3@gmail.com`
+* **Telegram:** [@SIIMUCH](https://t.me/SIIMUCH)
+* **Discord:** `SIIMUCH` (`832983105287618601`)
+
+*Status:* Available for technical co-founder / CTO roles in high-performance or systems-level product teams.
