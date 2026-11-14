@@ -142,7 +142,7 @@ Everything is open source under the <b>Euclase</b> name, and every repository sa
 <h3 align="center">How they fit together</h3>
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#0F2933', 'primaryTextColor': '#F8FAFC', 'primaryBorderColor': '#2DD4BF', 'lineColor': '#2DD4BF', 'fontFamily': 'Segoe UI, Helvetica, Arial, sans-serif'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#0F2933', 'primaryTextColor': '#F8FAFC', 'primaryBorderColor': '#2DD4BF', 'lineColor': '#2DD4BF', 'edgeLabelBackground': '#0F2933', 'textColor': '#2DD4BF', 'fontFamily': 'Segoe UI, Helvetica, Arial, sans-serif'}}}%%
 flowchart LR
     M["Euclase Monitor<br/>CPU · GPU · RAM · network"] -- "Corundum ring<br/>shared memory" --> L["Euclase Light<br/>colour follows load"]
     L -- "OpenRGB SDK, loopback" --> H["RGB hardware"]
