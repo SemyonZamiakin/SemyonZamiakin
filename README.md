@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-I write software that works close to the machine: code that patches a running program's machine code, lock-free IPC
+I write software that works close to the machine: an LLM engine whose SIMD kernels are written by hand, code that patches a running program's machine code, lock-free IPC
 measured in nanoseconds, monitors that read the operating system directly, and UI for small embedded displays.
 Everything is open source under the <b>Euclase</b> name, and every repository says plainly what is tested and what is not.
 </p>
@@ -31,21 +31,25 @@ Everything is open source under the <b>Euclase</b> name, and every repository sa
 
 <table align="center">
   <tr>
-    <td align="center" width="25%">
+    <td align="center" width="20%">
       <h2>74 ns</h2>
       <sub>one-way message between two processes through <b>Corundum HFT</b> on Windows<br>(an OS pipe: 6.7 µs)</sub>
     </td>
-    <td align="center" width="25%">
+    <td align="center" width="20%">
       <h2>2M+</h2>
       <sub>real x86-64 instructions where <b>Vajra</b>'s own decoder matches GNU objdump</sub>
     </td>
-    <td align="center" width="25%">
+    <td align="center" width="20%">
       <h2>1.3 ms</h2>
       <sub>per update in <b>Euclase Monitor</b> 1.1<br>(8.1 ms in 0.1)</sub>
     </td>
-    <td align="center" width="25%">
+    <td align="center" width="20%">
       <h2>0</h2>
       <sub>network connections opened by <b>SessionGuard</b>: the audit log never leaves your PC</sub>
+    </td>
+    <td align="center" width="20%">
+      <h2>38.8 tok/s</h2>
+      <sub>a 1.1B-parameter LLM on an i9-9900K CPU with <b>Adamant</b>'s hand-written AVX2</sub>
     </td>
   </tr>
 </table>
@@ -55,6 +59,22 @@ Everything is open source under the <b>Euclase</b> name, and every repository sa
 <h3 align="center">Projects</h3>
 
 <table>
+  <tr>
+    <td colspan="2" valign="top">
+      <h3><a href="https://github.com/SemyonZamiakin/Adamant">Adamant SIMD-VIC</a> &nbsp;<sub>new</sub></h3>
+      <p><em>A large language model on your CPU, with every hot loop written by hand.</em></p>
+      <p>Loads a quantized LLM from a GGUF file through a zero-copy memory mapping and generates text with hand-written AVX2
+      kernels for the Q4_K, Q6_K and Q8_0 block formats, each bit-identical to its scalar twin: same logits, same tokens.
+      Generated tokens stream to other programs over a Corundum ring; a live console view shows tokens per second and
+      per-core load from Euclase Monitor.</p>
+      <p>
+        <img src="https://img.shields.io/badge/version-0.1.0-2DD4BF?labelColor=0F2933" alt="version 0.1.0">
+        <a href="https://github.com/SemyonZamiakin/Adamant/actions/workflows/ci.yml"><img src="https://github.com/SemyonZamiakin/Adamant/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+        <img src="https://img.shields.io/badge/C%2B%2B17%20%2B%20AVX2-Linux%20%7C%20Windows-2DD4BF?labelColor=0F2933" alt="C++17 + AVX2, Linux, Windows">
+      </p>
+      <sub>TinyLlama-1.1B: 38.8 tok/s on Windows, 45 on Linux (i9-9900K, 8 threads) · logits match an independent numpy reference (cosine 0.9998) · 3.8 M kernel results checked bit for bit · ASan + UBSan, TSan</sub>
+    </td>
+  </tr>
   <tr>
     <td width="50%" valign="top">
       <h3><a href="https://github.com/SemyonZamiakin/VajraBinaryCore">Vajra Binary Core</a></h3>
@@ -147,6 +167,8 @@ flowchart LR
     M["Euclase Monitor<br/>CPU · GPU · RAM · network"] -- "Corundum ring<br/>shared memory" --> L["Euclase Light<br/>colour follows load"]
     L -- "OpenRGB SDK, loopback" --> H["RGB hardware"]
     M -. "HTTP export, opt-in" .-> E["ESP32 + EuclaseUI<br/>SPI display (example)"]
+    A["Adamant SIMD-VIC<br/>LLM inference on CPU"] -- "Corundum ring<br/>tokens" --> V["adamant-view<br/>live dashboard"]
+    M -- "Corundum ring<br/>CPU per core, RAM" --> V
 ```
 
 <p align="center"><img src="assets/divider.png" width="100%" alt=""></p>
