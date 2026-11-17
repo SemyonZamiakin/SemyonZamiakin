@@ -96,7 +96,7 @@ Everything is open source under the <b>Euclase</b> name, and every repository sa
       the reader uses it in place: one acquire load and one release store per side, no system calls, locks or heap on the
       hot path. Linux (POSIX shm + futex) and Windows (named mapping + event).</p>
       <p>
-        <img src="https://img.shields.io/badge/version-1.1.0-2DD4BF?labelColor=0F2933" alt="version 1.1.0">
+        <img src="https://img.shields.io/badge/version-1.2.0-2DD4BF?labelColor=0F2933" alt="version 1.2.0">
         <a href="https://github.com/SemyonZamiakin/CorundumHFT/actions/workflows/ci.yml"><img src="https://github.com/SemyonZamiakin/CorundumHFT/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
         <img src="https://img.shields.io/badge/C11%20%2F%20C%2B%2B17-Linux%20%7C%20Windows-2DD4BF?labelColor=0F2933" alt="C11 / C++17, Linux, Windows">
       </p>
